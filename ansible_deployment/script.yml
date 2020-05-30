@@ -1,0 +1,17 @@
+- hosts: all
+  become_user: root
+  tasks:
+  - name: ansible Install apache http
+    package: 
+      name: httpd
+      state: installed
+
+  - name: start service
+    service: 
+      name: httpd
+      state: restarted
+      enabled: yes
+  - name: copy files
+    copy: 
+      src: index.html
+      dest: /var/www/html/index.html
